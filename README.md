@@ -5,9 +5,10 @@ This is a FastAPI-based web service that provides image generation capabilities 
 ## Prerequisites
 
 - Python 3.8 or higher
-- CUDA-capable GPU with at least 8GB VRAM
-- CUDA toolkit installed
-- Windows/Linux operating system
+- CUDA-capable GPU with at least 8GB VRAM (for Windows/Linux)
+- CUDA toolkit installed (for Windows/Linux)
+- macOS 12.0+ with Apple Silicon (for Mac users)
+- Windows/Linux/macOS operating system
 
 ## Installation
 
@@ -36,6 +37,23 @@ Note: If you're using Windows and encounter issues with torch installation, you 
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 ```
 
+### Mac Installation
+
+For Mac Mini and other Apple Silicon (M1/M2/M3) devices, we provide optimized versions of the application in the `osx` folder:
+
+1. Navigate to the osx directory:
+```bash
+cd osx
+```
+
+2. Run the Mac-specific setup script:
+```bash
+chmod +x setup_mac.sh
+./setup_mac.sh
+```
+
+This will create a virtual environment and install all the required dependencies optimized for Apple Silicon.
+
 ## Running the Application
 
 1. Activate the virtual environment if not already activated:
@@ -52,6 +70,21 @@ uvicorn main:app --reload
 ```
 
 The server will start at `http://localhost:8000`
+
+### Running on Mac
+
+To run on Mac, use the provided run script in the osx directory:
+```bash
+cd osx
+./run_mac.sh
+```
+
+Or manually:
+```bash
+cd osx
+source venv/bin/activate
+uvicorn main:app --reload
+```
 
 ## API Endpoints
 
@@ -102,6 +135,12 @@ The repository includes a `generator.py` script that can automatically generate 
 python generator.py
 ```
 
+For Mac users:
+```bash
+cd osx
+python generator.py
+```
+
 The script will:
 - Automatically resize large images for optimal processing
 - Generate variations using random combinations of:
@@ -120,9 +159,20 @@ The script creates a new directory named `dress_variations_YYYYMMDD_HHMMSS` cont
 
 Each generated image filename includes the style, color, and design elements used in its creation.
 
+## Mac-Specific Features
+
+For Mac Mini and Apple Silicon users:
+- Uses Metal Performance Shaders (MPS) instead of CUDA for acceleration
+- Optimized parameters for better performance on Apple chips:
+  - Default step count: 30 (vs 50 on CUDA)
+  - Fixed batch size: 1
+  - Increased timeout for first-time model compilation
+
 ## Notes
 
-- The service requires a CUDA-capable GPU for image generation
+- The service requires a GPU for acceleration (CUDA on Windows/Linux, Metal on Mac)
 - Input images are automatically resized to 768x768 pixels
 - Generated images are saved in automatically created output directories
-- For optimal performance, ensure your GPU has sufficient VRAM
+- For optimal performance:
+  - Windows/Linux: Ensure your GPU has sufficient VRAM
+  - Mac: First generation may be slower as models are compiled for Metal
