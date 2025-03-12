@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.env
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project specific
+output_*/
+images/
+*.png
+*.jpg
+*.jpeg
+response.json
+
+# Pytorch/ML specific
+*.pth
+*.ckpt
+*.pt
+*.bin
+
+# Logs
+*.log
+logs/ 
