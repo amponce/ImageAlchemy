@@ -4,7 +4,22 @@
 
 ImageAlchemy is an open-source image generation tool that specializes in creating variations of Roblox character models with different outfit colors and styles. The application uses Stable Diffusion XL to transform images with customizable Roblox-style outfits while maintaining the character's facial features.
 
-![ImageAlchemy Demo](https://github.com/username/ImageAlchemy/raw/main/docs/demo.png)
+
+# Runway Collection
+
+## Examples and Control Images
+
+| Yellow | Teal | Red | Purple |
+|--------|------|-----|--------|
+| <img src="https://github.com/user-attachments/assets/349b04df-b459-403d-9681-bef806d27bab" width="180"> | <img src="https://github.com/user-attachments/assets/6aee3916-4b3e-4068-afad-94bac88c9d36" width="180"> | <img src="https://github.com/user-attachments/assets/691224c3-bc28-4d43-86fc-156bccbc0d8d" width="180"> | <img src="https://github.com/user-attachments/assets/268cde57-d037-488b-8209-d251e2bad8fa" width="180"> |
+
+| Pink | Green | Blue |
+|------|-------|------|
+| <img src="https://github.com/user-attachments/assets/a5dd6da9-08e8-4d1f-8912-7af98bebdca4" width="180"> | <img src="https://github.com/user-attachments/assets/d961e3ca-0a7e-406a-ae51-92c19fc5d958" width="180"> | <img src="https://github.com/user-attachments/assets/806b6f6c-ba97-450e-8994-d9d086652eac" width="180"> |
+
+| Control 1 | Control 2 | Control 3 |
+|-----------|-----------|-----------|
+| <img src="https://github.com/user-attachments/assets/7b3c4879-4457-4b9e-beb7-922cb969d9d5" width="180"> | <img src="https://github.com/user-attachments/assets/9ad63f95-7ada-4d89-bffc-52e766f1fec2" width="180"> | <img src="https://github.com/user-attachments/assets/072742ec-d08a-44e5-a522-774ea2b38a94" width="180"> |
 
 ## Features
 
