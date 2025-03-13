@@ -1,0 +1,9 @@
+{
+  "face_settings": {
+    "face_preservation": "preserve exact face structure, same facial features, same eye color, same nose, photorealistic face",
+    "hair_preservation": "natural hair only, same hair style, same hair color, no head accessories",
+    "expression_modifier": "pensive expression, slightly bigger anime-like eyes, dreamy gaze, thoughtful look, slightly larger eyes with love expression, anime influenced eye style, Roblox character style, 3D Roblox face",
+    "body_preservation": "preserve exact pose, same body position",
+    "base_quality": "high quality, detailed, professional photography"
+  }
+}

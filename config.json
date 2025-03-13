@@ -1,0 +1,58 @@
+{
+  "global_settings": {
+    "strength": 0.75,
+    "guidance_scale": 10.0,
+    "steps": 50,
+    "batch_size": 1
+  },
+  "face_settings": {
+    "face_preservation": "preserve exact face structure, same facial features, same eye color, same nose, photorealistic face",
+    "hair_preservation": "natural hair only, same hair style, same hair color, no head accessories",
+    "expression_modifier": "pensive expression, slightly bigger anime-like eyes, dreamy gaze, thoughtful look, slightly larger eyes with love expression, anime influenced eye style, Roblox character style, 3D Roblox face",
+    "body_preservation": "preserve exact pose, same body position",
+    "base_quality": "high quality, detailed, professional photography"
+  },
+  "negative_prompts": {
+    "face_negative": "distorted face, deformed face, bad face, multiple faces, unrealistic face, face artifacts",
+    "hair_negative": "weird hair, hair accessories, headpiece, crown, tiara, hat, anything on head",
+    "body_negative": "distorted body, bad anatomy, extra limbs, missing limbs, unrealistic proportions",
+    "base_negative": "nude, naked, nsfw, badly drawn face, wrong face, deformed face, extra fingers, poorly drawn fingers, blurry, bad art, poor quality, worst quality, (((duplicate))), ((morbid)), ((mutilated)), ((poorly drawn hands)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), (((disfigured))), out of frame, ugly, extra limbs, bad anatomy, cartoon, anime, illustration, painting, drawing, art, 3d render, disfigured, kitsch, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, distorted, bad proportions"
+  },
+  "dress_colors": [
+    {
+      "name": "red_dress",
+      "prompt": "A professional Roblox character model wearing a vibrant red polka dot roblox outfit, bright red 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, vibrant red fabric, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, expressionless, blank face, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "blue_dress",
+      "prompt": "A professional Roblox character model wearing a stylish blue polka dot roblox outfit, bright blue 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, intense blue color, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, smiling, happy expression, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "green_dress",
+      "prompt": "A professional Roblox character model wearing a flashy green polka dot roblox outfit, bright green 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, deep green fabric, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, serious face, frowning, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "purple_dress",
+      "prompt": "A professional Roblox character model wearing a royal purple polka dot roblox outfit, bright purple 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, royal purple color, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, neutral expression, blank stare, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "pink_dress",
+      "prompt": "A professional Roblox character model wearing a bright pink polka dot roblox outfit, bright pink 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, bright pink fabric, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, expressionless, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "yellow_dress",
+      "prompt": "A professional Roblox character model wearing a sunny yellow polka dot roblox outfit, bright yellow 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, sunshine yellow color, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, extreme emotion, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "teal_dress",
+      "prompt": "A professional Roblox character model wearing a beautiful teal polka dot roblox outfit, bright teal 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, teal blue-green color, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
+      "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, childish, immature, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    }
+  ]
+}

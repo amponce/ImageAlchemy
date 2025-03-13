@@ -1,19 +1,18 @@
-from diffusers import StableDiffusionXLImg2ImgPipeline, AutoencoderKL
-import torch
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse
+from diffusers import StableDiffusionXLImg2ImgPipeline, AutoencoderKL
 from PIL import Image
+import torch
 import uuid
 import os
 import json
-from diffusers.utils import load_image
-from safetensors.torch import load_file
 
 app = FastAPI()
 
 # Load configuration
 script_dir = os.path.dirname(os.path.abspath(__file__))
-config_path = os.path.join(script_dir, "config.json")
+parent_dir = os.path.dirname(script_dir)
+config_path = os.path.join(parent_dir, "config.json")
 try:
     with open(config_path, 'r') as f:
         config = json.load(f)
@@ -37,18 +36,22 @@ HAIR_NEGATIVE = negative_prompts.get("hair_negative", "weird hair, hair accessor
 BODY_NEGATIVE = negative_prompts.get("body_negative", "distorted body, bad anatomy, extra limbs, missing limbs, unrealistic proportions")
 BASE_NEGATIVE = negative_prompts.get("base_negative", "nude, naked, nsfw, badly drawn face, wrong face, deformed face, extra fingers, poorly drawn fingers, blurry, bad art, poor quality, worst quality")
 
-# Check for MPS (Metal Performance Shaders) availability on Mac
-if torch.backends.mps.is_available():
-    device = "mps"
-    print("Using MPS (Metal Performance Shaders) for acceleration on Apple Silicon")
-    dtype = torch.float32
-else:
-    device = "cpu"
-    print("MPS not available, using CPU (this will be slow)")
-    dtype = torch.float32
+# Check for CUDA availability (Windows GPU)
+device = "cuda" if torch.cuda.is_available() else "cpu"
+dtype = torch.float16 if device == "cuda" else torch.float32
+print(f"Using device: {device} with dtype: {dtype}")
 
-# Initialize pipeline with your custom SDXL model: EpicJuggernautXL
-custom_model_path = "models/epicjuggernautxl_vxvXI.safetensors"  # EpicJuggernautXL_vxvXI model
+# Print GPU information if CUDA is available
+if device == "cuda":
+    cuda_device_count = torch.cuda.device_count()
+    print(f"Found {cuda_device_count} CUDA device(s)")
+    for i in range(cuda_device_count):
+        print(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
+    print(f"  Current device: {torch.cuda.current_device()}")
+    print(f"  Available memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB")
+
+# Initialize pipeline with custom SDXL model
+custom_model_path = "../models/epicjuggernautxl_vxvXI.safetensors"
 
 # Check if custom model exists
 if os.path.exists(custom_model_path):
@@ -65,52 +68,85 @@ if os.path.exists(custom_model_path):
         print(f"Couldn't load optimized VAE, using default: {e}")
         vae = None
     
-    # Initialize SDXL pipeline with your custom model
+    # Initialize SDXL pipeline with custom model
     pipe = StableDiffusionXLImg2ImgPipeline.from_single_file(
         custom_model_path,
         torch_dtype=dtype,
         safety_checker=None,
         requires_safety_checker=False,
         use_safetensors=True,
-        vae=vae  # Use the optimized VAE if available
+        vae=vae
     ).to(device)
     
     # Try to load LoRA for better face quality if available
     try:
-        if os.path.exists("models/sd_xl_offset_example-lora_1.0.safetensors"):
-            pipe.load_lora_weights("models/sd_xl_offset_example-lora_1.0.safetensors")
+        lora_path = "../models/sd_xl_offset_example-lora_1.0.safetensors"
+        if os.path.exists(lora_path):
+            pipe.load_lora_weights(lora_path)
             print("Loaded LoRA weights for enhanced quality")
     except Exception as e:
         print(f"Couldn't load LoRA weights: {e}")
     
 else:
-    # If model doesn't exist, raise an error
-    raise FileNotFoundError(f"Custom model not found at {custom_model_path}. Please ensure the model file exists.")
+    # If custom model doesn't exist, use standard SDXL model
+    print(f"Custom model not found at {custom_model_path}, using standard SDXL model")
+    pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
+        "stabilityai/stable-diffusion-xl-refiner-1.0", 
+        torch_dtype=dtype,
+        variant="fp16",
+        use_safetensors=True
+    ).to(device)
 
 # Enable memory optimizations
 pipe.enable_attention_slicing()
+if device == "cuda":
+    # Enable additional optimizations for CUDA
+    try:
+        # Use xformers for maximum memory efficiency
+        pipe.enable_xformers_memory_efficient_attention()
+        print("Enabled xformers memory efficient attention")
+    except:
+        print("xformers not available, using standard attention mechanism")
+    
+    # Enable sequential CPU offload if memory is tight
+    if torch.cuda.get_device_properties(0).total_memory < 8 * 1024**3:  # Less than 8GB VRAM
+        from accelerate import cpu_offload
+        print("Limited VRAM detected, enabling sequential CPU offloading")
+        cpu_offload(pipe.text_encoder, device)
+        cpu_offload(pipe.text_encoder_2, device)
+    
+    # Set optimal CUDA settings
+    torch.backends.cudnn.benchmark = True
+    print("Enabled cuDNN benchmark mode for faster performance")
 
 @app.post("/generate/")
 async def generate_images(
     prompt: str = Form(...),
     negative_prompt: str = Form(default=BASE_NEGATIVE),
-    strength: float = Form(0.75),  # Increased for more dramatic dress transformations for Roblox outfits
-    guidance_scale: float = Form(10.0),  # Increased to enforce stronger adherence to the dress style prompt
-    steps: int = Form(50),  # Increased for better detail preservation in transformed areas
+    strength: float = Form(0.75),
+    guidance_scale: float = Form(10.0),
+    steps: int = Form(50),
     batch_size: int = Form(1),
     file: UploadFile = File(...)
 ):
     try:
-        # Force batch_size to 1 for MPS
-        if device == "mps" and batch_size > 1:
-            print(f"Reducing batch size from {batch_size} to 1 for optimal MPS performance")
-            batch_size = 1
-
-        # Create a unique identifier for the output directory
-        output_dir = f"tmp_{uuid.uuid4()}"
+        # Create output directory
+        output_dir = f"output_{uuid.uuid4()}"
         os.makedirs(output_dir, exist_ok=True)
 
-        # Open and process the initial image
+        # Performance message
+        if device == "cuda":
+            print(f"Using CUDA with {batch_size} batch size")
+            # Limit batch size based on GPU memory
+            vram_gb = torch.cuda.get_device_properties(0).total_memory / 1024**3
+            if vram_gb < 8 and batch_size > 1:
+                print(f"Limited VRAM detected ({vram_gb:.1f}GB). Reducing batch size to 1 for stability.")
+                batch_size = 1
+        else:
+            print("Using CPU. For better performance, please use a CUDA-compatible GPU.")
+            batch_size = 1  # Force batch size of 1 on CPU
+
+        # Process initial image
         init_image = Image.open(file.file).convert("RGB")
         width, height = init_image.size
         
@@ -155,7 +191,7 @@ async def generate_images(
         else:
             color_change = "colored dress"
         
-        # SDXL optimized prompt - cleaner and more focused
+        # SDXL optimized prompt
         enhanced_prompt = f"{prompt}, {FACE_PRESERVATION}, {HAIR_PRESERVATION}, {EXPRESSION_MODIFIER}, {BODY_PRESERVATION}, {color_change}, {BASE_QUALITY}"
 
         # Add expression-specific negative prompts based on what's in the prompt
@@ -176,10 +212,7 @@ async def generate_images(
         # Simplified negative prompt for SDXL
         full_negative_prompt = f"{negative_prompt}, {FACE_NEGATIVE}, {HAIR_NEGATIVE}, {BODY_NEGATIVE}, {expression_negative}"
 
-        # Cap steps for performance but ensure enough for quality
-        actual_steps = min(50, steps) if device == "mps" else steps
-        
-        # SDXL-specific feature: Add compel for better prompt weighting
+        # Try using compel for better prompt weighting if available
         try:
             from compel import Compel, ReturnedEmbeddingsType
 
@@ -204,7 +237,7 @@ async def generate_images(
                 image=init_image,
                 strength=strength,
                 guidance_scale=guidance_scale,
-                num_inference_steps=actual_steps,
+                num_inference_steps=steps,
             ).images
             
             print("Used Compel for optimized prompt understanding")
@@ -220,7 +253,7 @@ async def generate_images(
                 negative_prompt=[full_negative_prompt] * batch_size,
                 strength=strength,
                 guidance_scale=guidance_scale,
-                num_inference_steps=actual_steps,
+                num_inference_steps=steps,
             ).images
 
         # Save and return the result
@@ -236,8 +269,8 @@ async def generate_images(
             f.write(f"Negative prompt: {full_negative_prompt}\n")
             f.write(f"Strength: {strength}\n")
             f.write(f"Guidance scale: {guidance_scale}\n")
-            f.write(f"Steps: {actual_steps}\n")
-            f.write(f"Using SDXL: {True if 'sdxl' in str(pipe.__class__).lower() else False}\n")
+            f.write(f"Steps: {steps}\n")
+            f.write(f"Using device: {device}, dtype: {dtype}\n")
 
         return FileResponse(image_paths[0])
 

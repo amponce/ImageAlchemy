@@ -12,9 +12,10 @@ import shutil
 api_url = "http://localhost:8000/generate/"  # Your FastAPI endpoint
 # Get the script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(script_dir) 
 
 # Load configuration file
-config_path = os.path.join(script_dir, "config.json")
+config_path = os.path.join(parent_dir, "config.json")
 try:
     with open(config_path, 'r') as f:
         config = json.load(f)
@@ -32,8 +33,8 @@ except Exception as e:
         "dress_colors": []
     }
 
-# Reference images for context (all images in the images directory)
-reference_images_dir = os.path.join(script_dir, "images")
+# Reference images for context (all images in the parent images directory)
+reference_images_dir = os.path.join(parent_dir, "images")
 reference_image_paths = [os.path.join(reference_images_dir, f) for f in os.listdir(reference_images_dir) 
                         if f.endswith(('.jpg', '.jpeg', '.png')) and os.path.isfile(os.path.join(reference_images_dir, f))]
 print(f"Found {len(reference_image_paths)} reference images: {[os.path.basename(p) for p in reference_image_paths]}")
@@ -49,6 +50,7 @@ num_variations = min(len(config["dress_colors"]), 7)  # Number of different dres
 print(f"Will generate {num_variations} variations based on config file")
 
 # Create output folder if it doesn't exist
+output_folder = f"dress_colors_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
 os.makedirs(output_folder, exist_ok=True)
 
 print(f"Starting generation process. Images will be saved to: {os.path.abspath(output_folder)}")
@@ -154,4 +156,4 @@ for i, variation in enumerate(config["dress_colors"][:num_variations]):
 
 print("\nAll variations generated!")
 print(f"Output saved to {os.path.abspath(output_folder)}")
-print("Generation process complete.") 
+print("Generation process complete.")

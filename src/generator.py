@@ -7,20 +7,46 @@ from PIL import Image
 import datetime
 import traceback
 import shutil
+import sys
+
+# Add the parent directory to Python path so we can import from scripts/utils
+script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(script_dir)
+sys.path.append(parent_dir)
+
+# Import the PromptBuilder utility
+try:
+    from scripts.utils.prompt_builder import PromptBuilder
+    print("Imported PromptBuilder successfully")
+except ImportError as e:
+    print(f"Error importing PromptBuilder: {e}")
+    print("Please make sure scripts/utils/prompt_builder.py exists")
+    exit(1)
 
 # Configuration
 api_url = "http://localhost:8000/generate/"  # Your FastAPI endpoint
+
 # Get the script's directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(script_dir)
 
-# Load configuration file
-config_path = os.path.join(script_dir, "config.json")
+# Load configuration using PromptBuilder
 try:
-    with open(config_path, 'r') as f:
+    prompt_builder = PromptBuilder(config_path="config/default_config.json")
+    print("Loaded prompt builder and configuration")
+    
+    # Get global settings from config
+    config = {}
+    with open(os.path.join(parent_dir, "config/default_config.json"), 'r') as f:
         config = json.load(f)
-    print(f"Loaded configuration from {config_path}")
+    
+    # Get all outfit styles for generation
+    outfit_styles = prompt_builder.get_all_outfit_styles()
+    print(f"Loaded {len(outfit_styles)} outfit styles")
+    
 except Exception as e:
     print(f"Error loading configuration: {e}")
+    traceback.print_exc()
     print("Using default configuration")
     config = {
         "global_settings": {
@@ -28,12 +54,14 @@ except Exception as e:
             "guidance_scale": 10.0,
             "steps": 50,
             "batch_size": 1
-        },
-        "dress_colors": []
+        }
     }
+    outfit_styles = []
+    print("Please create proper configuration files")
+    exit(1)
 
 # Reference images for context (all images in the images directory)
-reference_images_dir = os.path.join(script_dir, "images")
+reference_images_dir = os.path.join(parent_dir, "images")
 reference_image_paths = [os.path.join(reference_images_dir, f) for f in os.listdir(reference_images_dir) 
                         if f.endswith(('.jpg', '.jpeg', '.png')) and os.path.isfile(os.path.join(reference_images_dir, f))]
 print(f"Found {len(reference_image_paths)} reference images: {[os.path.basename(p) for p in reference_image_paths]}")
@@ -43,8 +71,8 @@ if not reference_image_paths:
     print("Error: No reference images found in the images directory.")
     exit(1)
 
-output_folder = f"dress_colors_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
-num_variations = min(len(config["dress_colors"]), 7)  # Number of different dress colors to generate, limited by config
+output_folder = os.path.join(parent_dir, f"dress_colors_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}")
+num_variations = min(len(outfit_styles), 7)  # Number of different dress colors to generate, limited by config
 
 print(f"Will generate {num_variations} variations based on config file")
 
@@ -70,13 +98,30 @@ except Exception as e:
     print(f"Error: Could not process reference images: {e}")
     exit(1)
 
-# Copy the configuration file to output folder for reference
+# Copy the configuration files to output folder for reference
 try:
-    config_output_path = os.path.join(output_folder, "used_config.json")
-    shutil.copy2(config_path, config_output_path)
-    print(f"Copied configuration file to output folder for reference")
+    # Create config folder in output directory
+    config_output_dir = os.path.join(output_folder, "config")
+    os.makedirs(config_output_dir, exist_ok=True)
+    
+    # Copy main config
+    shutil.copy2(os.path.join(parent_dir, "config/default_config.json"), 
+                 os.path.join(config_output_dir, "default_config.json"))
+    
+    # Copy prompt files
+    prompts_output_dir = os.path.join(output_folder, "prompts")
+    os.makedirs(prompts_output_dir, exist_ok=True)
+    
+    shutil.copy2(os.path.join(parent_dir, "prompts/face_styles.json"), 
+                 os.path.join(prompts_output_dir, "face_styles.json"))
+    shutil.copy2(os.path.join(parent_dir, "prompts/negative_prompts.json"),
+                 os.path.join(prompts_output_dir, "negative_prompts.json"))
+    shutil.copy2(os.path.join(parent_dir, "prompts/outfit_styles.json"),
+                 os.path.join(prompts_output_dir, "outfit_styles.json"))
+                 
+    print(f"Copied configuration files to output folder for reference")
 except Exception as e:
-    print(f"Warning: Could not copy configuration file: {e}")
+    print(f"Warning: Could not copy configuration files: {e}")
 
 # Get global settings from config
 global_settings = config.get("global_settings", {})
@@ -86,15 +131,19 @@ steps = global_settings.get("steps", 50)
 batch_size = global_settings.get("batch_size", 1)
 
 # Generate variations using all reference images
-for i, variation in enumerate(config["dress_colors"][:num_variations]):
+for i, variation in enumerate(outfit_styles[:num_variations]):
     print(f"\nGenerating variation {i+1}/{num_variations}: {variation['name']}")
     
     # Use a different reference image for each variation (cycling through them)
     input_image_path = reference_image_paths[i % len(reference_image_paths)]
     print(f"Using reference image: {os.path.basename(input_image_path)}")
     
-    prompt = variation["prompt"]
-    negative_prompt = variation["negative_prompt"]
+    # Build the complete prompt for this outfit style
+    outfit_name = variation["name"]
+    prompt_data = prompt_builder.build_outfit_prompt(outfit_name)
+    
+    prompt = prompt_data["prompt"]
+    negative_prompt = prompt_data["negative_prompt"]
     
     # Make API request
     try:
@@ -154,4 +203,4 @@ for i, variation in enumerate(config["dress_colors"][:num_variations]):
 
 print("\nAll variations generated!")
 print(f"Output saved to {os.path.abspath(output_folder)}")
-print("Generation process complete.") 
+print("Generation process complete.")

@@ -10,6 +10,10 @@ torchvision>=0.17.0
 diffusers>=0.25.0
 transformers>=4.37.0
 accelerate>=0.27.0
+safetensors>=0.4.0
+
+# SDXL specific enhancements
+compel>=2.0.2  # For better SDXL prompt understanding
 
 # Image processing
 Pillow>=10.2.0
@@ -18,4 +22,7 @@ Pillow>=10.2.0
 requests>=2.31.0
 
 # Optional: for better performance
-ninja>=1.11.0 
+ninja>=1.11.0
+
+# For Windows GPU acceleration
+xformers>=0.0.23 ; platform_system == "Windows"

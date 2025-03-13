@@ -1,0 +1,13 @@
+{
+  "global_settings": {
+    "strength": 0.75,
+    "guidance_scale": 10.0,
+    "steps": 50,
+    "batch_size": 1
+  },
+  "prompt_files": {
+    "face_styles": "prompts/face_styles.json",
+    "negative_prompts": "prompts/negative_prompts.json",
+    "outfit_styles": "prompts/outfit_styles.json"
+  }
+}

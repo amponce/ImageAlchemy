@@ -1,0 +1,10 @@
+Place your FLUX model files in this directory.
+
+Expected files:
+- flux_schnell.safetensors
+
+These files are not included in the repository due to their large size.
+You can download them from Hugging Face or other sources.
+
+If you don't have the model files, the scripts will automatically download them from Hugging Face,
+but this requires an internet connection and will be slower than using local files. 

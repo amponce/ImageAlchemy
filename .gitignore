@@ -20,14 +20,28 @@ build/
 *.swp
 *.swo
 
+# OS specific
+.DS_Store
+Thumbs.db
+.directory
+
 # Project specific
 output_*/
-images/
-*.png
-*.jpg
-*.jpeg
+dress_colors_*/
+tmp_*/
 response.json
 
+# Keep the example images
+!/images/*.jpeg
+!/images/*.jpg
+!/images/*.png
+
+# Model files - don't include in repo, download during setup
+models/*.safetensors
+models/*.ckpt
+models/*.bin
+!models/README.md
+models/sdxl-vae-fp16-fix/*
 # Pytorch/ML specific
 *.pth
 *.ckpt
@@ -36,4 +50,4 @@ response.json
 
 # Logs
 *.log
-logs/ 
+logs/

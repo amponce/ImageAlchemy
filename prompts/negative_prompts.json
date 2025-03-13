@@ -1,0 +1,8 @@
+{
+  "negative_prompts": {
+    "face_negative": "distorted face, deformed face, bad face, multiple faces, unrealistic face, face artifacts",
+    "hair_negative": "weird hair, hair accessories, headpiece, crown, tiara, hat, anything on head",
+    "body_negative": "distorted body, bad anatomy, extra limbs, missing limbs, unrealistic proportions",
+    "base_negative": "nude, naked, nsfw, badly drawn face, wrong face, deformed face, extra fingers, poorly drawn fingers, blurry, bad art, poor quality, worst quality, (((duplicate))), ((morbid)), ((mutilated)), ((poorly drawn hands)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), (((disfigured))), out of frame, ugly, extra limbs, bad anatomy, cartoon, anime, illustration, painting, drawing, art, 3d render, disfigured, kitsch, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, distorted, bad proportions"
+  }
+}
