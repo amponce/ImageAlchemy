@@ -29,11 +29,3 @@ The generator script (`generator.py`) will:
 3. Preserve the character's face and pose while changing outfit colors and styles
 4. Output variations that match each reference image
 
-## Image Licensing
-
-The sample images included are for demonstration purposes only. When using your own images, ensure you have the proper rights and permissions.
-
-For production use, consider:
-- Using properly licensed stock photography
-- Creating your own photographs
-- Obtaining permission from photographers and models
