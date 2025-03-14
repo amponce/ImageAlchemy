@@ -9,7 +9,7 @@ Follow these steps in order:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ImageAlchemy.git
+git clone https://github.com/amponce/ImageAlchemy.git
 cd ImageAlchemy
 ```
 
