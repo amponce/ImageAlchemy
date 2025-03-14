@@ -1,7 +1,7 @@
-Place your FLUX model files in this directory.
+Place your SDXL model files in this directory.
 
 Expected files:
-- flux_schnell.safetensors
+- epicjuggernautxl_vxvXI.safetensors
 
 These files are not included in the repository due to their large size.
 You can download them from Hugging Face or other sources.
