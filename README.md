@@ -11,12 +11,12 @@ ImageAlchemy is an open-source image generation tool that specializes in creatin
 |-----|--------|------|
 | <img src="https://github.com/user-attachments/assets/9b59d918-285a-49ba-93c1-b1d83154556e" width="180"> | <img src="https://github.com/user-attachments/assets/ec57f7fe-1c97-4168-a523-3504abccedd2" width="180"> | <img src="https://github.com/user-attachments/assets/fd609551-c44c-4fc9-bf52-12df3f28e48c" width="180"> |
 
-| Blue | Yellow |
-|------|--------|
-| <img src="https://github.com/user-attachments/assets/87cab888-84fc-46c2-a784-212c993bba4c" width="180"> | <img src="https://github.com/user-attachments/assets/70996575-df73-4c56-b934-ff7f326a8024" width="180"> |
+| Blue | Yellow | Purple |
+|------|-------|------|
+| <img src="https://github.com/user-attachments/assets/87cab888-84fc-46c2-a784-212c993bba4c" width="180"> | <img src="https://github.com/user-attachments/assets/70996575-df73-4c56-b934-ff7f326a8024" width="180"> |  <img src="https://github.com/user-attachments/assets/df2ca571-49e6-4eb4-8b35-591773779dbf" width="180"> |
 
 
-| Yellow Alt | Teal | Red Alt| Purple Alt|
+| Yellow | Teal | Red| Purple|
 |--------|------|-----|--------|
 | <img src="https://github.com/user-attachments/assets/e5f158fd-ba9a-4f12-813f-0b7f50a7d1a4" width="180"> | <img src="https://github.com/user-attachments/assets/85c807d6-5807-4ff3-b3c7-c9a6c17c5905" width="180"> | <img src="https://github.com/user-attachments/assets/73462ec0-44b4-479f-8875-2dfe0900d247" width="180"> | <img src="https://github.com/user-attachments/assets/df2ca571-49e6-4eb4-8b35-591773779dbf" width="180"> |
 
