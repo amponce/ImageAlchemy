@@ -6,7 +6,7 @@ ImageAlchemy is an open-source image generation tool that specializes in creatin
 
 ## Showcase Gallery
 
-
+### SMURFS 
 | Red | Purple | Pink |
 |-----|--------|------|
 | <img src="https://github.com/user-attachments/assets/9b59d918-285a-49ba-93c1-b1d83154556e" width="180"> | <img src="https://github.com/user-attachments/assets/ec57f7fe-1c97-4168-a523-3504abccedd2" width="180"> | <img src="https://github.com/user-attachments/assets/fd609551-c44c-4fc9-bf52-12df3f28e48c" width="180"> |
@@ -16,29 +16,29 @@ ImageAlchemy is an open-source image generation tool that specializes in creatin
 | <img src="https://github.com/user-attachments/assets/87cab888-84fc-46c2-a784-212c993bba4c" width="180"> | <img src="https://github.com/user-attachments/assets/70996575-df73-4c56-b934-ff7f326a8024" width="180"> |  <img src="https://github.com/user-attachments/assets/df2ca571-49e6-4eb4-8b35-591773779dbf" width="180"> |
 
 
-| Yellow | Teal | Red| Purple|
-|--------|------|-----|--------|
-| <img src="https://github.com/user-attachments/assets/e5f158fd-ba9a-4f12-813f-0b7f50a7d1a4" width="180"> | <img src="https://github.com/user-attachments/assets/85c807d6-5807-4ff3-b3c7-c9a6c17c5905" width="180"> | <img src="https://github.com/user-attachments/assets/73462ec0-44b4-479f-8875-2dfe0900d247" width="180"> | <img src="https://github.com/user-attachments/assets/df2ca571-49e6-4eb4-8b35-591773779dbf" width="180"> |
+| Teal | Red| Purple|
+|------|-----|--------|
+| <img src="https://github.com/user-attachments/assets/85c807d6-5807-4ff3-b3c7-c9a6c17c5905" width="180"> | <img src="https://github.com/user-attachments/assets/73462ec0-44b4-479f-8875-2dfe0900d247" width="180"> | <img src="https://github.com/user-attachments/assets/df2ca571-49e6-4eb4-8b35-591773779dbf" width="180"> |
 
 | Pink | Green | Blue |
 |------|-------|------|
 | <img src="https://github.com/user-attachments/assets/650232aa-44c9-4145-af47-75b8a358f053" width="180"> | <img src="https://github.com/user-attachments/assets/0c61361d-fd8e-494b-a222-8ecc63785a41" width="180"> | <img src="https://github.com/user-attachments/assets/7d07d5f6-c943-4632-a23c-44ebcc453717" width="180"> |
 
+### ROBLOX
 
-
-| Yellow | Teal | Red | Purple |
-|--------|------|-----|--------|
-| <img src="https://github.com/user-attachments/assets/349b04df-b459-403d-9681-bef806d27bab" width="180"> | <img src="https://github.com/user-attachments/assets/6aee3916-4b3e-4068-afad-94bac88c9d36" width="180"> | <img src="https://github.com/user-attachments/assets/691224c3-bc28-4d43-86fc-156bccbc0d8d" width="180"> | <img src="https://github.com/user-attachments/assets/268cde57-d037-488b-8209-d251e2bad8fa" width="180"> |
+| Teal | Red | Purple |
+|------|-----|--------|
+| <img src="https://github.com/user-attachments/assets/6aee3916-4b3e-4068-afad-94bac88c9d36" width="180"> | <img src="https://github.com/user-attachments/assets/691224c3-bc28-4d43-86fc-156bccbc0d8d" width="180"> | <img src="https://github.com/user-attachments/assets/268cde57-d037-488b-8209-d251e2bad8fa" width="180"> |
 
 | Pink | Green | Blue |
 |------|-------|------|
 | <img src="https://github.com/user-attachments/assets/a5dd6da9-08e8-4d1f-8912-7af98bebdca4" width="180"> | <img src="https://github.com/user-attachments/assets/d961e3ca-0a7e-406a-ae51-92c19fc5d958" width="180"> | <img src="https://github.com/user-attachments/assets/806b6f6c-ba97-450e-8994-d9d086652eac" width="180"> |
 
 
-
-| Yellow | Teal | Red | Purple |
-|--------|------|-----|--------|
-| <img src="https://github.com/user-attachments/assets/768390ff-88e6-4ecb-ba6e-9eabebc75bef" width="180"> | <img src="https://github.com/user-attachments/assets/e5a2b1d5-7d3b-426b-89e6-5d26ea672a69" width="180"> | <img src="https://github.com/user-attachments/assets/abfa1bd0-f82c-42ef-b925-f7af498079d3" width="180"> | <img src="https://github.com/user-attachments/assets/09058a7c-6db9-482d-8ef4-468119885c56" width="180"> |
+### NEIR
+| Teal | Red | Purple |
+|------|-----|--------|
+| <img src="https://github.com/user-attachments/assets/e5a2b1d5-7d3b-426b-89e6-5d26ea672a69" width="180"> | <img src="https://github.com/user-attachments/assets/abfa1bd0-f82c-42ef-b925-f7af498079d3" width="180"> | <img src="https://github.com/user-attachments/assets/09058a7c-6db9-482d-8ef4-468119885c56" width="180"> |
 
 | Pink | Green | Blue |
 |------|-------|------|
@@ -46,7 +46,7 @@ ImageAlchemy is an open-source image generation tool that specializes in creatin
 
 
 
-### Examples and Control Images
+### Control Images
 
 
 | Control 1 | Control 2 | Control 3 |
