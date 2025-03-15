@@ -1,13 +1,29 @@
+import os
+import torch
+
+# Force CUDA-only operation
+assert torch.cuda.is_available(), "CUDA GPU is required!"
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512'
+
+# Set CUDA optimizations
+torch.backends.cuda.matmul.allow_tf32 = True
+torch.backends.cudnn.allow_tf32 = True
+torch.backends.cudnn.benchmark = True
+
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse
 from diffusers import StableDiffusionXLImg2ImgPipeline, AutoencoderKL
 from PIL import Image
-import torch
 import uuid
-import os
 import json
 
 app = FastAPI()
+
+# Print GPU information
+print(f"CUDA Device Count: {torch.cuda.device_count()}")
+print(f"Using GPU: {torch.cuda.get_device_name(0)}")
+print(f"Available GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB")
 
 # Load configuration
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +40,7 @@ except Exception as e:
 # Extract face settings from config or use defaults
 face_settings = config.get("face_settings", {})
 FACE_PRESERVATION = face_settings.get("face_preservation", "preserve exact face structure, same facial features, same eye color, same nose, photorealistic face")
-HAIR_PRESERVATION = face_settings.get("hair_preservation", "natural hair only, same hair style, same hair color, no head accessories")
+HAIR_PRESERVATION = face_settings.get("hair_preservation", "elegant flowing hair, beautiful wavy hair, silky smooth hair, well-styled hair, natural hair texture, glamorous hairstyle, luxurious hair volume, feminine hairstyle, elegant pixie cut")
 EXPRESSION_MODIFIER = face_settings.get("expression_modifier", "pensive expression, slightly bigger anime-like eyes, dreamy gaze, thoughtful look, slightly larger eyes with love expression, anime influenced eye style, Roblox character style, 3D Roblox face")
 BODY_PRESERVATION = face_settings.get("body_preservation", "preserve exact pose, same body position")
 BASE_QUALITY = face_settings.get("base_quality", "high quality, detailed, professional photography")
@@ -32,92 +48,70 @@ BASE_QUALITY = face_settings.get("base_quality", "high quality, detailed, profes
 # Extract negative prompts from config or use defaults
 negative_prompts = config.get("negative_prompts", {})
 FACE_NEGATIVE = negative_prompts.get("face_negative", "distorted face, deformed face, bad face, multiple faces, unrealistic face, face artifacts")
-HAIR_NEGATIVE = negative_prompts.get("hair_negative", "weird hair, hair accessories, headpiece, crown, tiara, hat, anything on head")
+HAIR_NEGATIVE = negative_prompts.get("hair_negative", "buzz cut, messy hair, unkempt hair, hat, cap, headpiece, crown, tiara, hair accessories, bandana, headband, anything on head, bad hairstyle, tangled hair, frizzy hair")
 BODY_NEGATIVE = negative_prompts.get("body_negative", "distorted body, bad anatomy, extra limbs, missing limbs, unrealistic proportions")
 BASE_NEGATIVE = negative_prompts.get("base_negative", "nude, naked, nsfw, badly drawn face, wrong face, deformed face, extra fingers, poorly drawn fingers, blurry, bad art, poor quality, worst quality")
 
-# Check for CUDA availability (Windows GPU)
-device = "cuda" if torch.cuda.is_available() else "cpu"
-dtype = torch.float16 if device == "cuda" else torch.float32
+# Check for CUDA availability and force CUDA usage
+if not torch.cuda.is_available():
+    raise RuntimeError("CUDA GPU is required for this application. Please ensure you have a CUDA-compatible GPU and the correct drivers installed.")
+
+device = "cuda"
+dtype = torch.float16
+
+# Enable optimal settings for CUDA
+torch.backends.cuda.matmul.allow_tf32 = True  # Better performance on Ampere GPUs
+torch.backends.cudnn.allow_tf32 = True
+
 print(f"Using device: {device} with dtype: {dtype}")
 
-# Print GPU information if CUDA is available
-if device == "cuda":
-    cuda_device_count = torch.cuda.device_count()
-    print(f"Found {cuda_device_count} CUDA device(s)")
-    for i in range(cuda_device_count):
-        print(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
-    print(f"  Current device: {torch.cuda.current_device()}")
-    print(f"  Available memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB")
+# Print GPU information
+cuda_device_count = torch.cuda.device_count()
+print(f"Found {cuda_device_count} CUDA device(s)")
+for i in range(cuda_device_count):
+    print(f"  GPU {i}: {torch.cuda.get_device_name(i)}")
+print(f"  Current device: {torch.cuda.current_device()}")
+print(f"  Available memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB")
 
 # Initialize pipeline with custom SDXL model
-custom_model_path = "../models/epicjuggernautxl_vxvXI.safetensors"
+model_name = "juggernautXL_juggXIByRundiffusion.safetensors"
+custom_model_path = os.path.abspath(os.path.join(script_dir, "..", "models", model_name))
+vae_path = os.path.abspath(os.path.join(script_dir, "..", "models", "sdxl-vae-fp16-fix"))
 
-# Check if custom model exists
-if os.path.exists(custom_model_path):
-    print(f"Using custom SDXL model: {custom_model_path}")
-    
-    # Optional: Load improved VAE for better image reconstruction
-    try:
-        vae = AutoencoderKL.from_pretrained(
-            "madebyollin/sdxl-vae-fp16-fix", 
-            torch_dtype=dtype
-        )
-        print("Loaded optimized VAE for better image quality")
-    except Exception as e:
-        print(f"Couldn't load optimized VAE, using default: {e}")
-        vae = None
-    
-    # Initialize SDXL pipeline with custom model
-    pipe = StableDiffusionXLImg2ImgPipeline.from_single_file(
-        custom_model_path,
-        torch_dtype=dtype,
-        safety_checker=None,
-        requires_safety_checker=False,
-        use_safetensors=True,
-        vae=vae
-    ).to(device)
-    
-    # Try to load LoRA for better face quality if available
-    try:
-        lora_path = "../models/sd_xl_offset_example-lora_1.0.safetensors"
-        if os.path.exists(lora_path):
-            pipe.load_lora_weights(lora_path)
-            print("Loaded LoRA weights for enhanced quality")
-    except Exception as e:
-        print(f"Couldn't load LoRA weights: {e}")
-    
-else:
-    # If custom model doesn't exist, use standard SDXL model
-    print(f"Custom model not found at {custom_model_path}, using standard SDXL model")
-    pipe = StableDiffusionXLImg2ImgPipeline.from_pretrained(
-        "stabilityai/stable-diffusion-xl-refiner-1.0", 
-        torch_dtype=dtype,
-        variant="fp16",
-        use_safetensors=True
-    ).to(device)
+print(f"Loading model from: {custom_model_path}")
+print(f"Loading VAE from: {vae_path}")
+
+# First load the VAE
+try:
+    vae = AutoencoderKL.from_pretrained(
+        vae_path,
+        torch_dtype=torch.float16
+    ).to("cuda")
+    print("Loaded local optimized VAE")
+except Exception as e:
+    print(f"Couldn't load local VAE, downloading default: {e}")
+    vae = AutoencoderKL.from_pretrained(
+        "madebyollin/sdxl-vae-fp16-fix",
+        torch_dtype=torch.float16
+    ).to("cuda")
+
+# Initialize pipeline with the model
+pipe = StableDiffusionXLImg2ImgPipeline.from_single_file(
+    custom_model_path,
+    torch_dtype=torch.float16,
+    use_safetensors=True,
+    variant="fp16",
+    vae=vae
+).to("cuda")
 
 # Enable memory optimizations
 pipe.enable_attention_slicing()
-if device == "cuda":
-    # Enable additional optimizations for CUDA
-    try:
-        # Use xformers for maximum memory efficiency
-        pipe.enable_xformers_memory_efficient_attention()
-        print("Enabled xformers memory efficient attention")
-    except:
-        print("xformers not available, using standard attention mechanism")
-    
-    # Enable sequential CPU offload if memory is tight
-    if torch.cuda.get_device_properties(0).total_memory < 8 * 1024**3:  # Less than 8GB VRAM
-        from accelerate import cpu_offload
-        print("Limited VRAM detected, enabling sequential CPU offloading")
-        cpu_offload(pipe.text_encoder, device)
-        cpu_offload(pipe.text_encoder_2, device)
-    
-    # Set optimal CUDA settings
-    torch.backends.cudnn.benchmark = True
-    print("Enabled cuDNN benchmark mode for faster performance")
+try:
+    pipe.enable_xformers_memory_efficient_attention()
+    print("Using xformers for memory efficient attention")
+except:
+    print("xformers not available, using default attention")
+torch.backends.cudnn.benchmark = True
 
 @app.post("/generate/")
 async def generate_images(

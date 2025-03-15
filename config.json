@@ -7,14 +7,14 @@
   },
   "face_settings": {
     "face_preservation": "preserve exact face structure, same facial features, same eye color, same nose, photorealistic face",
-    "hair_preservation": "natural hair only, same hair style, same hair color, no head accessories",
+    "hair_preservation": "elegant flowing hair, beautiful wavy hair, silky smooth hair, well-styled hair, natural hair texture, glamorous hairstyle, luxurious hair volume, feminine hairstyle, elegant pixie cut",
     "expression_modifier": "pensive expression, slightly bigger anime-like eyes, dreamy gaze, thoughtful look, slightly larger eyes with love expression, anime influenced eye style, Roblox character style, 3D Roblox face",
     "body_preservation": "preserve exact pose, same body position",
     "base_quality": "high quality, detailed, professional photography"
   },
   "negative_prompts": {
     "face_negative": "distorted face, deformed face, bad face, multiple faces, unrealistic face, face artifacts",
-    "hair_negative": "weird hair, hair accessories, headpiece, crown, tiara, hat, anything on head",
+    "hair_negative": "buzz cut, messy hair, unkempt hair, hat, cap, headpiece, crown, tiara, hair accessories, bandana, headband, anything on head, bad hairstyle, tangled hair, frizzy hair",
     "body_negative": "distorted body, bad anatomy, extra limbs, missing limbs, unrealistic proportions",
     "base_negative": "nude, naked, nsfw, badly drawn face, wrong face, deformed face, extra fingers, poorly drawn fingers, blurry, bad art, poor quality, worst quality, (((duplicate))), ((morbid)), ((mutilated)), ((poorly drawn hands)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), (((disfigured))), out of frame, ugly, extra limbs, bad anatomy, cartoon, anime, illustration, painting, drawing, art, 3d render, disfigured, kitsch, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, distorted, bad proportions"
   },
@@ -22,7 +22,7 @@
     {
       "name": "red_outfit_smurf",
       "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing an elegant bright red designer dress with stylized mushroom-inspired elements, fashionable silhouette, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, cheerful expression, cute stylized proportions, highly detailed texturing",
-      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes,  roblox style"
     },
     {
       "name": "blue_outfit_smurf",

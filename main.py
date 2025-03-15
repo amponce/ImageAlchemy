@@ -48,7 +48,7 @@ else:
     dtype = torch.float32
 
 # Initialize pipeline with your custom SDXL model: EpicJuggernautXL
-custom_model_path = "models/epicjuggernautxl_vxvXI.safetensors"  # EpicJuggernautXL_vxvXI model
+custom_model_path = "models/epicjuggernautxl_vxvXI.safetensors" # EpicJuggernautXL_vxvXI model
 
 # Check if custom model exists
 if os.path.exists(custom_model_path):

@@ -11,6 +11,7 @@ diffusers>=0.25.0
 transformers>=4.37.0
 accelerate>=0.27.0
 safetensors>=0.4.0
+peft>=0.14.0  # For loading custom models
 
 # SDXL specific enhancements
 compel>=2.0.2  # For better SDXL prompt understanding

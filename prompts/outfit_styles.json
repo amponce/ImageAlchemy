@@ -39,6 +39,41 @@
       "name": "teal_dress",
       "prompt": "A professional Roblox character model wearing a beautiful teal polka dot roblox outfit, bright teal 3D roblox dress, complete outfit change, digital roblox fashion, pensive facial expression, slightly bigger anime-like eyes, dreamy thoughtful gaze, anime influenced eye style with love expression, professional model, high fashion, teal blue-green color, digital roblox style, completely different outfit, similar larger eyes, preserve exact same pose, same hairstyle, digital 3D outfit style, clean photorealistic face rendering",
       "negative_prompt": "deformed face, bad face, distorted face, unrealistic face, bad anatomy, poor quality, low quality, childish, immature, weird hair, hair accessories, headpiece, crown, tiara, hat, hair ornaments, floating objects on head, different pose, altered pose, different body position, different facial features, anything on head, headwear, royal crown, princess crown, queen crown, jewels on head, jewelry on head, head decoration, floral crown, flower crown, head ornament, head accessory, hair pins, hair clips, decorative hair pieces, headdress, head covering, head gear, hat, cap, beanie, headband, anything attached to hair, anything floating above head, anything floating on head, ceremonial headdress, face artifacts, fragmented face, face glitches, weird face texture"
+    },
+    {
+      "name": "red_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing an elegant bright red designer dress with stylized mushroom-inspired elements, fashionable silhouette, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, cheerful expression, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes,  roblox style"
+    },
+    {
+      "name": "blue_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing a stylish royal blue designer outfit with white accents, fashionable two-piece design with mushroom-inspired patterns, layered skirt with modern silhouette, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, confident pose, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
+    },
+    {
+      "name": "green_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing a fashionable emerald green designer dress with leaf and forest-inspired details, flowing silhouette with natural elements, stylized woodland accessories, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, playful expression, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
+    },
+    {
+      "name": "purple_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing a glamorous royal purple designer gown with berry-inspired embellishments, elegant silhouette with fantasy details, sparkly accents, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, graceful pose, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
+    },
+    {
+      "name": "pink_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing a charming hot pink designer outfit with flower-inspired elements, fashionable silhouette with petal-shaped details, stylized floral accessories, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, happy expression, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
+    },
+    {
+      "name": "yellow_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing a bright sunny yellow designer dress with honeycomb pattern details, fashionable silhouette with bee and flower motifs, stylized nature-inspired accessories, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, radiant expression, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
+    },
+    {
+      "name": "teal_outfit_smurf",
+      "prompt": "A beautiful animated female Smurf character on a fashion runway, full-body view, bright blue skin, large expressive eyes, delicate feminine features, white Smurf cap, wearing a sophisticated teal designer outfit with water-inspired elements, flowing silhouette with wave patterns, stylized aquatic accessories, detailed animated style, clean lines, vibrant colors, professional cartoon rendering, fashion runway background with soft lighting, serene expression, cute stylized proportions, highly detailed texturing",
+      "negative_prompt": "photorealistic, 3d render, photograph, realistic skin, human skin tone, deformed face, bad face, distorted face, bad anatomy, poor quality, low quality, masculine features, beard, mustache, male smurf, Papa Smurf, Gargamel, human features, live action, dark lighting, scary expression, adult themes, roblox style"
     }
   ]
 }
