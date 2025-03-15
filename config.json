@@ -1,19 +1,19 @@
 {
   "global_settings": {
-    "strength": 0.75,
-    "guidance_scale": 10.0,
+    "strength": 0.68,
+    "guidance_scale": 12.0,
     "steps": 50,
     "batch_size": 1
   },
   "face_settings": {
-    "face_preservation": "preserve exact face structure, same facial features, same eye color, same nose, photorealistic face",
+    "face_preservation": "preserve exact face structure, same facial features, same eye color, same nose, photorealistic face, perfectly symmetrical face, mirror-perfect facial symmetry",
     "hair_preservation": "elegant flowing hair, beautiful wavy hair, silky smooth hair, well-styled hair, natural hair texture, glamorous hairstyle, luxurious hair volume, feminine hairstyle, elegant pixie cut",
-    "expression_modifier": "pensive expression, slightly bigger anime-like eyes, dreamy gaze, thoughtful look, slightly larger eyes with love expression, anime influenced eye style, Roblox character style, 3D Roblox face",
+    "expression_modifier": "perfectly symmetrical eyes, identical eye size and shape, matching green eyes on both sides, identical eye makeup, forward-facing gaze, perfectly balanced facial features, centered pupils, anime-inspired eyes, mirror symmetry in eyes, perfect eye alignment",
     "body_preservation": "preserve exact pose, same body position",
-    "base_quality": "high quality, detailed, professional photography"
+    "base_quality": "high quality, detailed, professional photography, ultra-realistic"
   },
   "negative_prompts": {
-    "face_negative": "distorted face, deformed face, bad face, multiple faces, unrealistic face, face artifacts",
+    "face_negative": "distorted face, deformed face, bad face, multiple faces, unrealistic face, face artifacts, asymmetrical eyes, mismatched eyes, uneven eyes, heterochromia, lazy eye, crooked eyes, different sized eyes, wonky eyes, crossed eyes, wall-eyed, strabismus, eye distortion, unaligned eyes, eye asymmetry, eye artifacts",
     "hair_negative": "buzz cut, messy hair, unkempt hair, hat, cap, headpiece, crown, tiara, hair accessories, bandana, headband, anything on head, bad hairstyle, tangled hair, frizzy hair",
     "body_negative": "distorted body, bad anatomy, extra limbs, missing limbs, unrealistic proportions",
     "base_negative": "nude, naked, nsfw, badly drawn face, wrong face, deformed face, extra fingers, poorly drawn fingers, blurry, bad art, poor quality, worst quality, (((duplicate))), ((morbid)), ((mutilated)), ((poorly drawn hands)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), (((disfigured))), out of frame, ugly, extra limbs, bad anatomy, cartoon, anime, illustration, painting, drawing, art, 3d render, disfigured, kitsch, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, distorted, bad proportions"
@@ -21,38 +21,38 @@
   "dress_colors": [
     {
       "name": "red_outfit_zombie",
-      "prompt": "A fierce anime-style female survivor striding down a ruined high school hallway turned zombie-infested fashion runway. She wears a blood-red, high-slit combat dress with ripped accents, a reinforced corset, and knee-high tactical boots. Her sharp eyes stare directly forward with perfect symmetry, glowing slightly under dim flickering lights. Her outfit is splattered with artistic blood patterns, blending horror with high fashion. The atmosphere is haunting, with overturned lockers, eerie shadows, and a faint mist creeping through the scene. Highly detailed anime rendering, smooth linework, cinematic lighting, dynamic pose.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "prompt": "A fierce anime-style female survivor striding down a ruined high school hallway turned zombie-infested fashion runway. She wears a blood-red, high-slit combat dress with ripped accents, a reinforced corset, and knee-high tactical boots. Her symmetrical green eyes stare directly forward with perfect symmetry, glowing slightly under dim flickering lights. Her outfit is splattered with artistic blood patterns, blending horror with high fashion. The atmosphere is haunting, with overturned lockers, eerie shadows, and a faint mist creeping through the scene. Highly detailed anime rendering, smooth linework, cinematic lighting, dynamic pose.",
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     },
     {
       "name": "blue_outfit_zombie",
-      "prompt": "A captivating anime-style female model striding down a ruined high school runway, her piercing symmetrical eyes locked forward, exuding deadly confidence. She wears a deep blue combat-ready dress with a stylish slit, reinforced straps, and elegant tactical gloves. Her polished boots crush scattered debris, and a bloodstained handkerchief dangles from her grasp as she walks. The background consists of a dilapidated gymnasium overtaken by the apocalypse, with flickering lights casting eerie reflections on the cracked floor. Highly detailed anime aesthetic, dynamic composition, smooth lighting transitions.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "prompt": "A captivating anime-style female model striding down a ruined high school runway, her piercing symmetrical green eyes locked forward, exuding deadly confidence. She wears a deep blue combat-ready dress with a stylish slit, reinforced straps, and elegant tactical gloves. Her polished boots crush scattered debris, and a bloodstained handkerchief dangles from her grasp as she walks. The background consists of a dilapidated gymnasium overtaken by the apocalypse, with flickering lights casting eerie reflections on the cracked floor. Highly detailed anime aesthetic, dynamic composition, smooth lighting transitions.",
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     },
     {
       "name": "green_outfit_zombie",
       "prompt": "An intense anime-style female survivor walking the post-apocalyptic high school runway, her sharp emerald green eyes staring directly forward with perfect symmetry. She wears a battle-ready green ensemble—tactical ripped shorts, a cropped combat jacket, and knee-high armored boots. A katana is strapped to her side, gleaming under the cold emergency lights of the ruined hallway. The floor is littered with spent bullet casings and traces of past battles, adding to the eerie runway ambiance. Her expression is determined, her stride unwavering. Highly detailed anime rendering, fluid motion, cinematic shadows, and post-apocalyptic color grading.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     },
     {
       "name": "purple_outfit_zombie",
-      "prompt": "A striking anime-style female model confidently walks a dilapidated school runway, her symmetrical violet eyes glowing faintly under flickering neon signs. She wears a dark gothic-inspired combat dress with regal purple lace, shredded yet refined, with intricate metallic accents. Her high-heeled combat boots stomp through puddles of rainwater reflecting eerie post-apocalyptic lighting. Bloodstains on her sleeves hint at her survival prowess, yet her face remains flawless and untouched by the horrors around her. Highly detailed anime artwork, cinematic lighting, atmospheric fog, dynamic perspective.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "prompt": "A striking anime-style female model confidently walks a dilapidated school runway, her symmetrical bright green eyes glowing faintly under flickering neon signs. She wears a dark gothic-inspired combat dress with regal purple lace, shredded yet refined, with intricate metallic accents. Her high-heeled combat boots stomp through puddles of rainwater reflecting eerie post-apocalyptic lighting. Bloodstains on her sleeves hint at her survival prowess, yet her face remains flawless and untouched by the horrors around her. Highly detailed anime artwork, cinematic lighting, atmospheric fog, dynamic perspective.",
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     },
     {
       "name": "pink_outfit_zombie",
-      "prompt": "A deadly yet elegant anime-style female survivor in a battle-worn hot pink fashion ensemble, her bright, symmetrical eyes piercing through the chaos of the post-apocalyptic runway. Her outfit blends gothic lolita with high-tech tactical gear—ripped lace, reinforced gloves, and a flowing asymmetrical skirt stained with crimson. The runway is lined with ruined school furniture and eerie emergency lights flickering in the distance, setting a haunting yet fashionable tone. Her pose exudes confidence, her presence captivating. Highly detailed anime art, dynamic posing, soft ambient lighting, cinematic contrast.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "prompt": "A deadly yet elegant anime-style female survivor in a battle-worn hot pink fashion ensemble, her identical green eyes piercing through the chaos of the post-apocalyptic runway. Her outfit blends gothic lolita with high-tech tactical gear—ripped lace, reinforced gloves, and a flowing asymmetrical skirt stained with crimson. The runway is lined with ruined school furniture and eerie emergency lights flickering in the distance, setting a haunting yet fashionable tone. Her pose exudes confidence, her presence captivating. Highly detailed anime art, dynamic posing, soft ambient lighting, cinematic contrast.",
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     },
     {
       "name": "yellow_outfit_zombie",
-      "prompt": "A stunning anime-style female model striding down a destroyed school hallway turned high-fashion runway, her perfectly symmetrical golden eyes reflecting the flickering lights overhead. She wears a bright yellow trench coat with combat-ready modifications, a ripped corset dress underneath, and metallic gold knee-high boots. Her long blonde hair flows behind her as she confidently moves forward. The eerie backdrop includes abandoned student desks and cracked walls with graffiti warnings about the zombie outbreak. Highly detailed anime rendering, balanced lighting, cinematic perspective, subtle glow effects.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "prompt": "A stunning anime-style female model striding down a destroyed school hallway turned high-fashion runway, her perfectly symmetrical bright green eyes reflecting the flickering lights overhead. She wears a bright yellow trench coat with combat-ready modifications, a ripped corset dress underneath, and metallic gold knee-high boots. Her long blonde hair flows behind her as she confidently moves forward. The eerie backdrop includes abandoned student desks and cracked walls with graffiti warnings about the zombie outbreak. Highly detailed anime rendering, balanced lighting, cinematic perspective, subtle glow effects.",
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     },
     {
       "name": "teal_outfit_zombie",
-      "prompt": "A mesmerizing anime-style female survivor walking down a flooded school hallway, transformed into a chilling yet stylish zombie-themed runway. Her teal combat dress is accentuated with wave-like patterns, torn yet elegant, and paired with sleek armored boots. Her piercing symmetrical eyes radiate a cold confidence, untouched by the chaos around her. Water ripples as she moves, reflecting the eerie neon blue emergency lights overhead. The atmosphere is a haunting fusion of beauty and destruction. Highly detailed anime rendering, soft lighting gradients, dynamic perspective, slight cyberpunk aesthetic.",
-      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style"
+      "prompt": "A mesmerizing anime-style female survivor walking down a flooded school hallway, transformed into a chilling yet stylish zombie-themed runway. Her teal combat dress is accentuated with wave-like patterns, torn yet elegant, and paired with sleek armored boots. Her piercing symmetrical bright green eyes radiate a cold confidence, untouched by the chaos around her. Water ripples as she moves, reflecting the eerie neon blue emergency lights overhead. The atmosphere is a haunting fusion of beauty and destruction. Highly detailed anime rendering, soft lighting gradients, dynamic perspective, slight cyberpunk aesthetic.",
+      "negative_prompt": "realistic, photorealistic, 3D render, pixelated, deformed face, asymmetrical eyes, bad anatomy, low quality, male characters, grotesque horror, overly dark lighting, chibi style, mismatched eyes, uneven eyes, different sized eyes"
     }
   ]
 }

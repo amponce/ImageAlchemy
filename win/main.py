@@ -74,9 +74,9 @@ print(f"  Current device: {torch.cuda.current_device()}")
 print(f"  Available memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB")
 
 # Initialize pipeline with custom SDXL model
-model_name = "juggernautXL_juggXIByRundiffusion.safetensors"
+model_name = "epicjuggernautxl_vxvXI.safetensors"
 custom_model_path = os.path.abspath(os.path.join(script_dir, "..", "models", model_name))
-vae_path = os.path.abspath(os.path.join(script_dir, "..", "models", "sdxl-vae-fp16-fix"))
+vae_path = os.path.abspath(os.path.join(script_dir, "..", "models", "VAE", "vae-ft-mse-840000-ema-pruned.ckpt"))
 
 print(f"Loading model from: {custom_model_path}")
 print(f"Loading VAE from: {vae_path}")
@@ -85,11 +85,13 @@ print(f"Loading VAE from: {vae_path}")
 try:
     vae = AutoencoderKL.from_pretrained(
         vae_path,
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        local_files_only=True
     ).to("cuda")
-    print("Loaded local optimized VAE")
+    print("Loaded custom VAE for better eye generation")
 except Exception as e:
-    print(f"Couldn't load local VAE, downloading default: {e}")
+    print(f"Couldn't load custom VAE, falling back to default: {e}")
+    # Fallback to SDXL's default VAE
     vae = AutoencoderKL.from_pretrained(
         "madebyollin/sdxl-vae-fp16-fix",
         torch_dtype=torch.float16
@@ -117,8 +119,8 @@ torch.backends.cudnn.benchmark = True
 async def generate_images(
     prompt: str = Form(...),
     negative_prompt: str = Form(default=BASE_NEGATIVE),
-    strength: float = Form(0.75),
-    guidance_scale: float = Form(10.0),
+    strength: float = Form(0.68),
+    guidance_scale: float = Form(12.0),
     steps: int = Form(50),
     batch_size: int = Form(1),
     file: UploadFile = File(...)
